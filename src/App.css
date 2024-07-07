@@ -20,12 +20,13 @@ body {
 .text-grid-item {
 	width: 0.6em;
 	height: 1.4em;
+	background-color: color-mix(in oklab, transparent 70%, var(--selection-color) 30%)
 }
 .text-grid-item[data-selected=true] {
-	background-color: #646cff66;
+	--selection-color: #646cff;
 }
 .text-grid-item[data-selected=self] {
-	background-color: #309e0e77;
+	--selection-color: #309e0e;
 }
 .text-grid-item:hover {
 	backdrop-filter: brightness(0.8);

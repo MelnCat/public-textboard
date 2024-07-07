@@ -1,5 +1,4 @@
 import { io } from "socket.io-client";
+import msgpackParser from "socket.io-msgpack-parser";
 
-export const socket = io();
-socket.onAny(console.log);
-socket.onAnyOutgoing(console.warn);
+export const socket = io({ parser: msgpackParser });
