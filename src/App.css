@@ -2,17 +2,35 @@ html,
 body {
 	margin: 0;
 	padding: 0;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+main {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+h1 {
+	padding: 0;
+	margin: 0.2em 0;
+	text-align: center;
+	font-size: 1.8em;
 }
 
 .text-grid {
 	display: flex;
+	margin: 0 auto;
 	flex-direction: column;
 	font-family: Consolas, monospace;
 	cursor: none;
-	background-color: #f3f3f3;
+	background-color: #111111;
+	color: #c6c6c6;
 	user-select: none;
-
+	border: black solid;
+	border-top-width: 1.2em;
+	border-bottom-width: 1.2em;
+	border-left-width: 1.8em;
+	border-right-width: 1.8em;
+	padding: 0.5em;
 }
 .text-grid-row {
 	display: flex;
@@ -20,15 +38,31 @@ body {
 .text-grid-item {
 	width: 0.6em;
 	height: 1.4em;
-	background-color: color-mix(in oklab, transparent 70%, var(--selection-color) 30%)
+	background-color: color-mix(in oklab, transparent 70%, var(--selection-color) 30%);
 }
-.text-grid-item[data-selected=true] {
+.text-grid-item[data-selected="true"] {
 	--selection-color: #646cff;
 }
-.text-grid-item[data-selected=self] {
+.text-grid-item[data-selected="self"] {
 	--selection-color: #309e0e;
 }
 .text-grid-item:hover {
 	backdrop-filter: brightness(0.8);
 	filter: brightness(0.8);
+}
+
+#hidden-input {
+	position: fixed;
+	top: 0;
+	left: 0;
+	pointer-events: none;
+	opacity: 0;
+}
+
+@media (prefers-color-scheme: light) {
+	.text-grid {
+		background-color: #f3f3f3;
+		color: #111111;
+		border-color: #dddddd;
+	}
 }

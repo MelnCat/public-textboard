@@ -2,6 +2,12 @@ import "./App.css";
 import { socket } from "./socket";
 
 const grid = document.getElementById("grid")!;
+const hiddenInput = document.getElementById("hidden-input") as HTMLInputElement;
+
+grid.addEventListener("click", () => {
+	hiddenInput.focus();
+});
+
 let data: string[][] = [];
 let selections: { x: number; y: number; color: string }[] = [];
 let selected: { x: number; y: number } | null = null;
@@ -81,6 +87,7 @@ for (let i = 0; i < 100; i++) {
 		item.className = "text-grid-item";
 		item.addEventListener("click", () => {
 			select(i, j);
+			hiddenInput.focus();
 		});
 		row.appendChild(item);
 		gridElements[`${i},${j}`] = item;
@@ -126,8 +133,8 @@ document.addEventListener("paste", e => {
 	if (selected === null) return;
 	e.preventDefault();
 	const text = e.clipboardData!.getData("text");
-	for (let i = 0; i < text.length; i++) {
-		set(selected.x, selected.y + i, text[i]);
+	for (const char of text) {
+		set(selected.x, selected.y, char);
+		select(selected.x, selected.y + 1);
 	}
-	select(selected.x, selected.y + text.length);
 })
