@@ -1,5 +1,6 @@
 import "./App.css";
 import { socket } from "./socket";
+import "./background";
 
 const grid = document.getElementById("grid")!;
 const hiddenInput = document.getElementById("hidden-input") as HTMLInputElement;

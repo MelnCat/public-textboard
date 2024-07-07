@@ -8,12 +8,15 @@ main {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	position: relative;
 }
 h1 {
-	padding: 0;
-	margin: 0.2em 0;
+	padding: 0.2em 0;
+	margin: 0.5em 0;
 	text-align: center;
-	font-size: 1.8em;
+	font-size: 2em;
+	background-color: #ffffffaa;
+	backdrop-filter: blur(4px);
 }
 
 .text-grid {
@@ -22,15 +25,11 @@ h1 {
 	flex-direction: column;
 	font-family: Consolas, monospace;
 	cursor: none;
-	background-color: #111111;
+	background-color: #111111ee;
+	backdrop-filter: blur(6px);
 	color: #c6c6c6;
 	user-select: none;
-	border: black solid;
-	border-top-width: 1.2em;
-	border-bottom-width: 1.2em;
-	border-left-width: 1.8em;
-	border-right-width: 1.8em;
-	padding: 0.5em;
+	padding: 1.6em;
 }
 .text-grid-row {
 	display: flex;
@@ -61,8 +60,7 @@ h1 {
 
 @media (prefers-color-scheme: light) {
 	.text-grid {
-		background-color: #f3f3f3;
+		background-color: #f3f3f3ee;
 		color: #111111;
-		border-color: #dddddd;
 	}
 }
