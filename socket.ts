@@ -1,8 +1,7 @@
-import { Server } from "socket.io";
-import http from "http";
 import { createHash } from "crypto";
 import fs from "fs";
-import { join } from "path";
+import http from "http";
+import { Server } from "socket.io";
 import msgpackParser from "socket.io-msgpack-parser";
 
 export const setup = (server: http.Server) => {

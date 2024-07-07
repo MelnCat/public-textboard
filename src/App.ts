@@ -135,7 +135,7 @@ document.addEventListener("keydown", e => {
 		select(selected.x, selected.y + 1);
 	}
 });
-
+/*
 document.addEventListener("paste", e => {
 	if (selected === null) return;
 	e.preventDefault();
@@ -145,3 +145,4 @@ document.addEventListener("paste", e => {
 		select(selected.x, selected.y + 1);
 	}
 });
+*/

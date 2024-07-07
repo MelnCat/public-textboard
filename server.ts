@@ -1,7 +1,10 @@
 import express from "express";
+import fs from "fs";
 import http from "http";
-import { Server } from "socket.io";
 import { setup } from "./socket";
+
+if (!fs.existsSync(new URL("./dist", import.meta.url))) throw new Error("Bundle is not built yet.");
+if (!fs.existsSync(new URL("./data", import.meta.url))) fs.mkdirSync(new URL("./data", import.meta.url));
 
 const app = express();
 

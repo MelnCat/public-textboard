@@ -1,6 +1,6 @@
-import { defineConfig, Plugin, PluginOption } from "vite";
-import { setup } from "./socket";
 import http from "http";
+import { defineConfig, Plugin } from "vite";
+import { setup } from "./socket";
 
 const socketio: () => Plugin = () => ({
 	name: "socket.io-server",
