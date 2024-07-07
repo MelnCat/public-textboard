@@ -1,5 +1,4 @@
 import { defineConfig, Plugin, PluginOption } from "vite";
-import react from "@vitejs/plugin-react-swc";
 import { Server } from "socket.io";
 import { createHash } from "crypto";
 import fs from "fs";
