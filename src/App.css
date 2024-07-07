@@ -9,6 +9,10 @@ body {
 	display: flex;
 	flex-direction: column;
 	font-family: Consolas, monospace;
+	cursor: none;
+	background-color: #f3f3f3;
+	user-select: none;
+
 }
 .text-grid-row {
 	display: flex;
@@ -18,5 +22,12 @@ body {
 	height: 1.4em;
 }
 .text-grid-item[data-selected=true] {
-	background-color: #646cff;
+	background-color: #646cff66;
+}
+.text-grid-item[data-selected=self] {
+	background-color: #309e0e77;
+}
+.text-grid-item:hover {
+	backdrop-filter: brightness(0.8);
+	filter: brightness(0.8);
 }
