@@ -2,14 +2,20 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<link rel="icon" type="image/png" href="/favicon.ico" />
+		<meta name="description" content="A publicly-editable whiteboard made of text." />
+		<meta name="theme-color" content="#f8f8f8" />
+
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Online Textboard</title>
+		<title>Public Textboard</title>
 		<link rel="stylesheet" href="/src/index.css" />
 	</head>
 	<body>
 		<main>
-			<h1>Online Textboard</h1>
+			<h1>Public Textboard</h1>
+			<section class="online">
+				<p>🟢 Online: <span id="online-count">0</span></p>
+			</section>
 			<article id="grid" class="text-grid"></article>
 		</main>
 		<canvas id="background"></canvas>

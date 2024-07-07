@@ -16,6 +16,7 @@ let selected: { x: number; y: number } | null = null;
 const gridElements: Record<`${number},${number}`, HTMLElement> = {};
 
 const updateSelections = (previous: { x: number; y: number; color: string }[], next: { x: number; y: number; color: string }[]) => {
+	console.log(previous, next);
 	for (const { x, y } of previous) {
 		gridElements[`${x},${y}`].removeAttribute("data-selected");
 		gridElements[`${x},${y}`].style.removeProperty("--selection-color");
@@ -51,7 +52,7 @@ const updateData = (next: string[][]) => {
 };
 const set = (x: number, y: number, value: string) => {
 	if (x < 0) return;
-	const newX = x % 100 + Math.floor(y / 100);
+	const newX = (x % 100) + Math.floor(y / 100);
 	const newY = (y + 100) % 100;
 	const toEdit = { x: newX, y: newY };
 	if (data === null) return;
@@ -61,7 +62,7 @@ const set = (x: number, y: number, value: string) => {
 };
 const select = (x: number, y: number) => {
 	if (x < 0) return;
-	const newX = x % 100 + Math.floor(y / 100);
+	const newX = (x % 100) + Math.floor(y / 100);
 	const newY = (y + 100) % 100;
 	const toSelect = { x: newX, y: newY };
 	updateSelected(selected, toSelect);
@@ -105,6 +106,9 @@ socket.on("set", (x: number, y: number, value: string) => {
 	data[x][y] = value;
 	gridElements[`${x},${y}`].innerText = value;
 });
+socket.on("online", count => {
+	document.getElementById("online-count")!.innerText = count.toString();
+});
 
 document.addEventListener("keydown", e => {
 	if (selected === null) return;
@@ -124,6 +128,8 @@ document.addEventListener("keydown", e => {
 		select(selected.x, selected.y - 1);
 	} else if (key === "ArrowRight") {
 		select(selected.x, selected.y + 1);
+	} else if (key === "Escape") {
+		deselect();
 	} else if (key.length === 1) {
 		set(selected.x, selected.y, key);
 		select(selected.x, selected.y + 1);
@@ -138,4 +144,4 @@ document.addEventListener("paste", e => {
 		set(selected.x, selected.y, char);
 		select(selected.x, selected.y + 1);
 	}
-})
+});

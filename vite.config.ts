@@ -23,7 +23,9 @@ const socketio: () => Plugin = () => ({
 		}, 1000 * 60 * 15);
 
 		io.on("connection", socket => {
+			io.emit("online", io.engine.clientsCount);
 			socket.emit("text", data);
+			socket.emit("selections", Object.values(selections));
 			socket.on("set", (x: number, y: number, value: string) => {
 				if (x < 0 || x >= data.length || y < 0 || y >= data[0].length || value.length !== 1) return;
 				data[x][y] = value;
@@ -33,7 +35,7 @@ const socketio: () => Plugin = () => ({
 				selections[socket.id] = { x, y, color: `#${createHash("sha256").update(socket.id).digest("hex").slice(0, 6)}` };
 				for (const s of await io.fetchSockets()) {
 					if (s.id === socket.id) continue;
-					socket.broadcast.emit(
+					s.emit(
 						"selections",
 						Object.entries(selections)
 							.filter(x => x[0] !== s.id)
@@ -45,7 +47,7 @@ const socketio: () => Plugin = () => ({
 				delete selections[socket.id];
 				for (const s of await io.fetchSockets()) {
 					if (s.id === socket.id) continue;
-					socket.broadcast.emit(
+					s.emit(
 						"selections",
 						Object.entries(selections)
 							.filter(x => x[0] !== s.id)
@@ -56,16 +58,12 @@ const socketio: () => Plugin = () => ({
 			socket.on("disconnect", () => {
 				delete selections[socket.id];
 				io.emit("selections", Object.values(selections));
-			});
-			socket.on("requestData", () => {
-				socket.emit("text", data);
-				socket.emit("selections", Object.values(selections));
+				io.emit("online", io.engine.clientsCount);
 			});
 		});
 	},
 });
 
-// https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [socketio()],
 });

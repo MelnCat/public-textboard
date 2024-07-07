@@ -12,11 +12,12 @@ main {
 }
 h1 {
 	padding: 0.2em 0;
-	margin: 0.5em 0;
+	margin: 0.2em 0;
+	margin-top: 0.4em;
 	text-align: center;
 	font-size: 2em;
 	background-color: #ffffffaa;
-	backdrop-filter: blur(4px);
+	backdrop-filter: blur(8px);
 }
 
 .text-grid {
@@ -26,7 +27,7 @@ h1 {
 	font-family: Consolas, monospace;
 	cursor: none;
 	background-color: #111111ee;
-	backdrop-filter: blur(6px);
+	backdrop-filter: blur(12px);
 	color: #c6c6c6;
 	user-select: none;
 	padding: 1.6em;
@@ -60,7 +61,26 @@ h1 {
 
 @media (prefers-color-scheme: light) {
 	.text-grid {
-		background-color: #f3f3f3ee;
+		background-color: #f6f6f6ee;
 		color: #111111;
 	}
+}
+
+.online {
+	padding: 0.2em 0.6em;
+	margin: 0.4em 0.4em;
+	text-align: center;
+	font-size: 2em;
+	background-color: #ffffffaa;
+	backdrop-filter: blur(8px);
+	width: fit-content;
+	margin-left: auto;
+}
+
+.online p {
+	margin: 0;
+}
+
+.online span {
+	font-weight: bold;
 }
